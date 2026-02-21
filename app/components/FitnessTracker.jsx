@@ -658,6 +658,7 @@ const EXERCISE_DATABASE = [
 export default function FitnessTracker() {
   const [activeTab, setActiveTab] = useState('home');
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [workouts, setWorkouts] = useState([]);
   const [workoutTemplates, setWorkoutTemplates] = useState([]);
@@ -893,6 +894,9 @@ export default function FitnessTracker() {
         
         if (session?.user) {
           setUser(session.user);
+          // Check if user is admin
+          const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+          setIsAdmin(session.user.email === adminEmail);
           
           // Load workouts from Supabase
           const { data: workoutsData, error } = await supabase
@@ -923,6 +927,8 @@ export default function FitnessTracker() {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null);
+      const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+      setIsAdmin(session?.user?.email === adminEmail);
     });
 
     return () => subscription?.unsubscribe();
@@ -1673,8 +1679,13 @@ export default function FitnessTracker() {
                 <Dumbbell className="h-8 w-8 text-blue-600" />
                 <h1 className="text-2xl font-bold text-white">Fitness Tracker</h1>
               </div>
-              <div className="text-sm text-gray-400">
-                {user?.email}
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-400">{user?.email}</span>
+                {isAdmin && (
+                  <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                    ADMIN
+                  </span>
+                )}
               </div>
             </div>
             
