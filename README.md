@@ -55,4 +55,4 @@ npm run build
 - Vite
 - Tailwind CSS (via CDN)
 - Lucide React (icons)
-- Local Storage (for data persistence)
+- Local Storage (for data persistence)# Deployment test
