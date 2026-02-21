@@ -1,3 +1,0 @@
-module.exports=[98548,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(70308);a.n(d("[project]/Desktop/ACM/Fitness App/FINALV1/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},56487,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(70308);a.n(d("[project]/Desktop/ACM/Fitness App/FINALV1/node_modules/next/dist/client/components/builtin/global-error.js"))},48625,a=>{"use strict";a.i(98548);var b=a.i(56487);a.n(b)}];
-
-//# sourceMappingURL=1c8d5_next_dist_client_components_builtin_global-error_f882c417.js.map

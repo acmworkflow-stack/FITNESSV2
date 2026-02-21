@@ -1,3 +1,0 @@
-module.exports=[4047,a=>{a.v({className:"inter_396b12ce-module__rRjk0G__className"})},38853,a=>{"use strict";var b=a.i(94869),c=a.i(4047);let d={className:c.default.className,style:{fontFamily:"'Inter', 'Inter Fallback'",fontStyle:"normal"}};function e({children:a}){return(0,b.jsx)("html",{lang:"en",children:(0,b.jsx)("body",{className:`${d.className} bg-gray-900 text-white`,children:a})})}null!=c.default.variable&&(d.variable=c.default.variable),a.s(["default",()=>e,"metadata",0,{title:"Fitness Tracker",description:"Excel-like fitness tracking with dark mode and calendars"}],38853)}];
-
-//# sourceMappingURL=%5Broot-of-the-server%5D__c913f57c._.js.map
