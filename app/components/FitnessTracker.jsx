@@ -936,22 +936,44 @@ export default function FitnessTracker() {
 
     try {
       for (const workout of newWorkouts) {
-        if (workout.id && workout.id.includes(`${Date.now()}`)) {
-          // New workout
-          const { error } = await supabase
+        // Check if this is a new workout (ID is a number/timestamp) or existing (UUID string)
+        const isNewWorkout = typeof workout.id === 'number';
+        
+        if (isNewWorkout) {
+          // Insert new workout
+          const { data, error } = await supabase
             .from('workouts')
-            .insert([{ ...workout, user_id: user.id }]);
-          if (error) throw error;
-        } else if (workout.id) {
-          // Update existing
+            .insert([{ 
+              ...workout, 
+              user_id: user.id,
+              id: undefined // Let Supabase generate UUID
+            }])
+            .select();
+          
+          if (error) {
+            console.error('Error inserting workout:', error);
+          } else if (data && data[0]) {
+            // Update the local workout with the new UUID from Supabase
+            const workoutIndex = newWorkouts.findIndex(w => w.id === workout.id);
+            if (workoutIndex !== -1) {
+              newWorkouts[workoutIndex].id = data[0].id;
+            }
+          }
+        } else {
+          // Update existing workout
           const { error } = await supabase
             .from('workouts')
             .update(workout)
             .eq('id', workout.id)
             .eq('user_id', user.id);
-          if (error) throw error;
+          
+          if (error) {
+            console.error('Error updating workout:', error);
+          }
         }
       }
+      // Update state with potentially new IDs
+      setWorkouts(newWorkouts);
     } catch (error) {
       console.error('Error saving workouts:', error);
     }
