@@ -1,58 +1,35 @@
-# Fitness Tracker App
+# Fitness Tracker
 
-A comprehensive fitness tracking application built with React and Vite.
+A training log I built for my own workouts: log sessions, save templates, and track personal records, with sign-in so my data follows me between devices.
+
+**Stack:** Next.js 16 · React 19 · Tailwind CSS · Supabase (auth) · Vercel
 
 ## Features
 
-- **Workout Tracking**: Log workouts with exercises, sets, reps, and weights
-- **Meal Logging**: Track calories, protein, carbs, and fats with food database
-- **Programs**: Create and manage workout programs with phases
-- **Templates**: Save and reuse workout templates
-- **Time Trials**: Record running times for various distances
-- **Body Map**: Visualize muscle fatigue and recovery
-- **Calendar View**: See workouts and meals in weekly/monthly calendar
-- **Exercise Library**: Browse exercises with instructions and videos
+- **Home dashboard:** what's on deck and recent sessions
+- **Workouts:** log exercises, sets, reps and weight
+- **Templates:** save a session once and reuse it
+- **PRs:** personal records per lift
+- **Accounts:** email sign-up and sign-in through Supabase Auth
 
-## Getting Started
+## Versions
 
-### Prerequisites
+This repo holds the whole history of the project. The older builds were separate repos and now live here as tags and archive branches.
 
-- Node.js (version 16 or higher)
-- npm or yarn
+| Version | What changed | Where |
+|---|---|---|
+| **v2.0** | Rebuilt on Next.js + Supabase, deployed on Vercel | `main` |
+| v1.0 | React + Vite app, data in localStorage, first tests | tag `v1.0` · branch `archive/v1-vite` |
+| v0.1 | First prototype (React + Vite) | tag `v0.1` · branch `archive/v0-copilot` |
 
-### Installation
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-2. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-3. Open your browser and navigate to `http://localhost:5173`
-
-### Build for Production
+## Run it locally
 
 ```bash
-npm run build
+npm install
+cp .env.example .env.local   # then add your Supabase URL and anon key
+npm run dev                  # http://localhost:3000
 ```
 
-## Usage
+## Deploy
 
-- Click "Add Workout" to log a new workout
-- Click "Add Meal" to log nutrition
-- Use the calendar to view and plan your fitness activities
-- Create templates for frequently used workouts
-- Track running times in the Time Trials section
-- Monitor muscle recovery in the Body Map
-
-## Technologies Used
-
-- React 18
-- Vite
-- Tailwind CSS (via CDN)
-- Lucide React (icons)
-- Local Storage (for data persistence)# Deployment test
+Push to `main` and Vercel builds it (`vercel.json`). Set the three variables from `.env.example` in the Vercel project settings.
